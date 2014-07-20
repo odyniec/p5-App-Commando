@@ -7,4 +7,12 @@ use warnings;
 
 # VERSION
 
+use App::Commando::Program;
+
+sub program {
+    my ($name) = @_;
+
+    my $program = App::Commando::Program->new($name);
+}
+
 1;
