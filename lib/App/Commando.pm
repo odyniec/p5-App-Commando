@@ -3,7 +3,7 @@ package App::Commando;
 use strict;
 use warnings;
 
-# FIXME: Add ABSTRACT
+# ABSTRACT: Flexible library to build command-line apps
 
 # VERSION
 
