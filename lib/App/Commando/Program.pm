@@ -7,12 +7,10 @@ use Moo;
 
 extends 'App::Commando::Command';
 
-sub BUILDARGS {
-    my ($class, $name) = @_;
+around BUILDARGS => sub {
+    my ($orig, $self, $name) = @_;
 
-    return {
-        'name' => $name,
-    };
-}
+    return $self->$orig($name);
+};
 
 1;

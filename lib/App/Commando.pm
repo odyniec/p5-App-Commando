@@ -13,6 +13,8 @@ sub program {
     my ($name) = @_;
 
     my $program = App::Commando::Program->new($name);
+
+    return $program;
 }
 
 1;
