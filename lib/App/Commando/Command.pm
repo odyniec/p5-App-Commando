@@ -5,6 +5,8 @@ use warnings;
 
 use Moo;
 
+use App::Commando::Option;
+
 has 'commands' => ( is => 'rw' );
 
 has 'name' => ( is => 'ro' );
