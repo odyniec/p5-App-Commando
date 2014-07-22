@@ -9,6 +9,8 @@ has 'commands' => ( is => 'rw' );
 
 has 'name' => ( is => 'ro' );
 
+has 'options' => ( is => 'rw' );
+
 has 'parent' => ( is => 'rw' );
 
 sub BUILDARGS {
@@ -17,8 +19,16 @@ sub BUILDARGS {
     return {
         commands    => {},
         name        => $name,
+        options     => [],
         parent      => $parent,
     };
+}
+
+sub option {
+    my ($self, $config_key, @info) = @_;
+
+    my $option = App::Commando::Option->new($config_key, @info);
+    push @{$self->options}, $option;
 }
 
 sub command {
