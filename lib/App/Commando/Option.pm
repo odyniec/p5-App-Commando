@@ -33,4 +33,10 @@ sub BUILDARGS {
     return $buildargs;
 }
 
+sub for_get_options {
+    my ($self) = @_;
+
+    return join '|', grep { /\S/ } map { $self->$_ } qw( short long );
+}
+
 1;
