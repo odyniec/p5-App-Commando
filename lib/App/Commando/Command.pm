@@ -83,6 +83,7 @@ sub process_options {
         };
     }
 
+    Getopt::Long::Configure('pass_through');
     GetOptions(%options_spec);
 }
 
