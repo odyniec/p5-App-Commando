@@ -61,7 +61,7 @@ sub go {
 
     $self->process_options($config);
 
-    if ($argv->[0] && exists $self->commands->{$argv->[0]}) {
+    if (defined $argv->[0] && exists $self->commands->{$argv->[0]}) {
         my $cmd = $self->commands->{$argv->[0]};
         shift @$argv;
         $cmd->go($argv, $config);
