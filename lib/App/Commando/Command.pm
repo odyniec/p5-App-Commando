@@ -66,6 +66,9 @@ sub go {
         shift @$argv;
         $cmd->go($argv, $config);
     }
+    else {
+        return $self;
+    }
 }
 
 sub process_options {
