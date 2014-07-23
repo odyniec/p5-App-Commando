@@ -8,6 +8,8 @@ use Moo;
 
 use App::Commando::Option;
 
+has 'actions' => ( is => 'rw' );
+
 has 'commands' => ( is => 'rw' );
 
 has 'map' => ( is => 'ro' );
@@ -22,6 +24,7 @@ sub BUILDARGS {
     my ($class, $name, $parent) = @_;
 
     return {
+        actions     => [],
         commands    => {},
         map         => {},
         name        => $name,
@@ -45,6 +48,12 @@ sub command {
     $self->commands->{$cmd_name} = $cmd;
 
     return $cmd;
+}
+
+sub action {
+    my ($self, $code) = @_;
+
+    push @{$self->actions}, $code;
 }
 
 sub go {
