@@ -19,7 +19,9 @@ sub BUILDARGS {
     my ($class, $config_key, @info) = @_;
 
     my $buildargs = {
-        config_key => $config_key,
+        config_key  => $config_key,
+        long        => '',
+        short       => '',
     };
 
     # Getopt::Long regular expression to match argument specification
