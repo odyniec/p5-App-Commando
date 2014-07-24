@@ -3,6 +3,7 @@ package App::Commando::Program;
 use strict;
 use warnings;
 
+use Getopt::Long qw( GetOptionsFromArray );
 use Moo;
 
 extends 'App::Commando::Command';
@@ -21,7 +22,14 @@ around BUILDARGS => sub {
 around go => sub {
     my ($orig, $self, $argv) = @_;
 
-    $self->$orig($argv, $self->config);
+    my $cmd = $self->$orig($argv, $self->config);
+
+    # Run through all options again in case there are any unknown ones
+    Getopt::Long::Configure('no_pass_through');
+    GetOptionsFromArray($argv,
+        { map { $_->for_get_options => undef } @{$self->options} });
+
+    $cmd->execute($argv, $self->config);
 };
 
 1;
