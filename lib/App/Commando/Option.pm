@@ -67,4 +67,10 @@ sub for_get_options {
         $self->spec;
 }
 
+sub switches {
+    my ($self) = @_;
+
+    return [ $self->short, $self->long ];
+}
+
 1;
