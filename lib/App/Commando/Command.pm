@@ -33,6 +33,22 @@ sub BUILDARGS {
     };
 }
 
+sub default_command {
+    my ($self, $command_name) = @_;
+
+    if ($command_name) {
+        if (exists $self->commands->{$command_name}) {
+            return $self->{_default_command} = $self->commands->{$command_name};
+        }
+        else {
+            # TODO: Error
+        }
+    }
+    else {
+        return $self->{_default_command};
+    }
+}
+
 sub option {
     my ($self, $config_key, @info) = @_;
 
