@@ -103,4 +103,20 @@ sub process_options {
     GetOptions(%options_spec);
 }
 
+sub execute {
+    my ($self, $argv, $config) = @_;
+
+    $argv //= [];
+    $config //= {};
+
+    if (!@{$self->actions} && defined $self->default_command) {
+        $self->default_command->execute;
+    }
+    else {
+        for my $action (@{$self->actions}) {
+            &$action($argv, $config);
+        }
+    }
+}
+
 1;
