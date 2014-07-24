@@ -5,6 +5,8 @@ use warnings;
 
 use Moo;
 
+has 'config_key' => ( is => 'ro' );
+
 has 'description' => ( is => 'ro' );
 
 has 'long' => ( is => 'ro' );
@@ -16,7 +18,9 @@ has 'spec' => ( is => 'ro' );
 sub BUILDARGS {
     my ($class, $config_key, @info) = @_;
 
-    my $buildargs = {};
+    my $buildargs = {
+        config_key => $config_key,
+    };
 
     # Getopt::Long regular expression to match argument specification
     my $spec_re = qr(

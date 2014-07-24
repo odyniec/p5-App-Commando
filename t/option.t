@@ -9,6 +9,7 @@ my $option = App::Commando::Option->new;
 isa_ok $option, 'App::Commando::Option', '$option';
 
 $option = App::Commando::Option->new('foo', '-f', '--foo', '=s', 'Foo');
+is $option->config_key, 'foo', 'Config key is correct';
 is $option->description, 'Foo', 'Description is correct';
 is $option->long, '--foo', 'Long switch is correct';
 is $option->short, '-f', 'Short switch is correct';
