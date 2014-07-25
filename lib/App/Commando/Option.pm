@@ -73,4 +73,16 @@ sub switches {
     return [ $self->short, $self->long ];
 }
 
+sub formatted_switches {
+    my ($self) = @_;
+
+    my $output = join(', ', 
+        sprintf("%10s", $self->switches->[0]),
+        sprintf("%-13s", $self->switches->[-1]));
+    $output =~ s/ , /   /g;
+    $output =~ s/,   /    /g;
+
+    return $output;
+}
+
 1;
