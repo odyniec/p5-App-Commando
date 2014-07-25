@@ -22,4 +22,16 @@ is $option->for_get_options, 'f|foo=s', 'for_get_options is correct';
 
 is_deeply $option->switches, [ '-f', '--foo' ], 'switches are correct';
 
+subtest 'Long switch only' => sub {
+    my $option = App::Commando::Option->new('foo', '--foo', '=s', 'Foo');
+    is_deeply $option->switches, [ '', '--foo' ],
+        'Short switch is an empty string';
+};
+
+subtest 'Short switch only' => sub {
+    my $option = App::Commando::Option->new('foo', '-f', '=s', 'Foo');
+    is_deeply $option->switches, [ '-f', '' ],
+        'Long switch is an empty string';
+};
+
 done_testing;
