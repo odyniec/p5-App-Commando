@@ -56,6 +56,12 @@ sub BUILDARGS {
     return $buildargs;
 }
 
+# Builds a stringified representation of the option
+use overload q("") => sub {
+    my ($self) = @_;
+    $self->formatted_switches . '  ' . $self->description;
+};
+
 sub for_get_options {
     my ($self) = @_;
 
