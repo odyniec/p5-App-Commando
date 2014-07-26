@@ -33,6 +33,14 @@ sub BUILDARGS {
     };
 }
 
+# Gets or sets the command version
+sub version {
+    my ($self, $version) = @_;
+
+    $self->{_version} = $version if defined $version;
+    return $self->{_version};
+}
+
 sub default_command {
     my ($self, $command_name) = @_;
 
