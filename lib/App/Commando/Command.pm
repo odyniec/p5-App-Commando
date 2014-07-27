@@ -41,6 +41,24 @@ sub version {
     return $self->{_version};
 }
 
+sub syntax {
+    my ($self, $syntax) = @_;
+
+    $self->{_syntax} = $syntax if defined $syntax;
+
+    my @syntax_list = ();
+
+    if ($self->parent) {
+        my $parent_syntax = $self->parent->syntax;
+        $parent_syntax =~ s/<[\w\s-]+>|\[[\w\s-]+\]//g;
+        $parent_syntax =~ s/^\s+|\s+$//g;
+        push @syntax_list, $parent_syntax;
+    }
+    push @syntax_list, ($self->{_syntax} || $self->name);
+
+    return join ' ', @syntax_list;
+}
+
 sub default_command {
     my ($self, $command_name) = @_;
 
