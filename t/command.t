@@ -18,4 +18,8 @@ is $command->syntax('foo [options]'), 'foo [options]',
     'Syntax is returned correctly when being set';
 is $command->syntax, 'foo [options]', 'Syntax is correct after setting';
 
+is_deeply $command->aliases, [], 'Aliases are initially empty';
+$command->alias('bar');
+is_deeply $command->aliases, [ 'bar' ], 'Aliases are set correctly';
+
 done_testing;

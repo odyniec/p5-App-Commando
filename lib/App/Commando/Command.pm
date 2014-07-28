@@ -10,6 +10,8 @@ use App::Commando::Option;
 
 has 'actions' => ( is => 'rw' );
 
+has 'aliases' => ( is => 'ro' );
+
 has 'commands' => ( is => 'rw' );
 
 has 'map' => ( is => 'ro' );
@@ -25,6 +27,7 @@ sub BUILDARGS {
 
     return {
         actions     => [],
+        aliases     => [],
         commands    => {},
         map         => {},
         name        => $name,
@@ -90,6 +93,14 @@ sub command {
     $self->commands->{$cmd_name} = $cmd;
 
     return $cmd;
+}
+
+sub alias {
+    my ($self, $cmd_name) = @_;
+
+    push @{$self->aliases}, $cmd_name;
+    $self->parent->commands->{$cmd_name} = $self
+        if $self->parent;
 }
 
 sub action {
