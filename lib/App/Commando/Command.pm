@@ -151,6 +151,29 @@ sub process_options {
     GetOptions(%options_spec);
 }
 
+sub add_default_options {
+    my ($self, %options_spec) = @_;
+
+    my $option;
+
+    $option = $self->option('show_help', '-h', '--help', 'Show this message');
+    $options_spec{$option->for_get_options} = sub {
+        for my $option (@{$self->options}) {
+            print "$option\n";
+        }
+        exit(0);
+    };
+
+    $option = $self->option('show_version', '-v', '--version',
+        'Print the name and version');
+    $options_spec{$option->for_get_options} = sub {
+        print(($self->name || '') . " " . ($self->version || '') . "\n");
+        exit(0);
+    };
+
+    return %options_spec;
+}
+
 sub execute {
     my ($self, $argv, $config) = @_;
 
