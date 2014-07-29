@@ -71,7 +71,7 @@ sub for_get_options {
             grep { /\S/ } # Exclude empty strings
                 map { s/^-+//; $_ } # Strip off leading dashes
                     map { $self->$_ } qw( short long )) .
-        $self->spec;
+        ($self->spec || '');
 }
 
 sub switches {
