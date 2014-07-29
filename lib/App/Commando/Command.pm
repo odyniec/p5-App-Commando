@@ -85,6 +85,8 @@ sub option {
     my $option = App::Commando::Option->new($config_key, @info);
     push @{$self->options}, $option;
     $self->map->{$option} = $config_key;
+
+    return $option;
 }
 
 sub command {
