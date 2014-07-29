@@ -6,6 +6,7 @@ use warnings;
 use Getopt::Long;
 use Moo;
 
+use App::Commando::Logger;
 use App::Commando::Option;
 
 has 'actions' => ( is => 'rw' );
@@ -107,6 +108,16 @@ sub action {
     my ($self, $code) = @_;
 
     push @{$self->actions}, $code;
+}
+
+sub logger {
+    my ($self) = @_;
+
+    unless ($self->{_logger}) {
+        $self->{_logger} = App::Commando::Logger->new;
+    }
+
+    return $self->{_logger};
 }
 
 sub go {
