@@ -147,6 +147,8 @@ sub process_options {
         };
     }
 
+    %options_spec = $self->add_default_options(%options_spec);
+
     Getopt::Long::Configure('pass_through');
     GetOptions(%options_spec);
 }
