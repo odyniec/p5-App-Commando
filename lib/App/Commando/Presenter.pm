@@ -27,7 +27,7 @@ sub options_presentation {
 
     return if !@{$self->command->options};
 
-    return join "\n", map { "$_" } @{$self->command->options};
+    return join "\n", map { $_->as_string } @{$self->command->options};
 }
 
 sub subcommands_presentation {
