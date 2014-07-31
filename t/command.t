@@ -26,10 +26,10 @@ is $command->full_name, 'foo', 'Full name is correct';
 
 is $command->identity, 'foo 1.2.3', 'Identity is correct';
 
-my $subcommand = App::Commando::Command->new('bar', $command);
+my $subcommand = App::Commando::Command->new('baz', $command);
 
-is $subcommand->full_name, 'foo bar', 'Full name of a subcommand is correct';
+is $subcommand->full_name, 'foo baz', 'Full name of a subcommand is correct';
 
-is $subcommand->identity, 'foo bar', 'Identity of a subcommand is correct';
+is $subcommand->identity, 'foo baz', 'Identity of a subcommand is correct';
 
 done_testing;
