@@ -15,6 +15,12 @@ sub BUILDARGS {
     };
 }
 
+sub usage_presentation {
+    my ($self) = @_;
+
+    return '  ' . $self->command->syntax;
+}
+
 sub command_header {
     my ($self) = @_;
 
@@ -30,7 +36,10 @@ sub command_presentation {
 
     my @msg = ();
 
-    push @msg, $self->command_header;
+    push @msg,
+        $self->command_header,
+        'Usage:',
+        $self->usage_presentation;
 
     return join "\n\n", @msg;
 }
