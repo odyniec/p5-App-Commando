@@ -15,6 +15,8 @@ has 'aliases' => ( is => 'ro' );
 
 has 'commands' => ( is => 'rw' );
 
+has 'description' => ( is => 'rw' );
+
 has 'map' => ( is => 'ro' );
 
 has 'name' => ( is => 'ro' );
