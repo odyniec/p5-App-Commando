@@ -224,4 +224,11 @@ sub names_and_aliases {
     return join ', ', $self->name, @{$self->aliases};
 }
 
+sub summarize {
+    my ($self) = @_;
+
+    return sprintf "  %-20s  %s", $self->names_and_aliases,
+        ($self->description || '');
+}
+
 1;
