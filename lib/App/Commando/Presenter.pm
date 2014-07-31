@@ -21,6 +21,14 @@ sub usage_presentation {
     return '  ' . $self->command->syntax;
 }
 
+sub options_presentation {
+    my ($self) = @_;
+
+    return if !@{$self->command->options};
+
+    return join "\n", map { "$_" } @{$self->command->options};
+}
+
 sub command_header {
     my ($self) = @_;
 
@@ -40,6 +48,10 @@ sub command_presentation {
         $self->command_header,
         'Usage:',
         $self->usage_presentation;
+
+    if (my $options = $self->options_presentation) {
+        push @msg, "Options:\n" . $options;
+    }
 
     return join "\n\n", @msg;
 }
