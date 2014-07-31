@@ -40,13 +40,6 @@ sub BUILDARGS {
     };
 }
 
-# Builds a stringified representation of the command
-use overload q("") => sub {
-    my ($self) = @_;
-
-    return App::Commando::Presenter->new($self)->command_presentation;
-};
-
 # Gets or sets the command version
 sub version {
     my ($self, $version) = @_;
@@ -170,7 +163,7 @@ sub add_default_options {
 
     $option = $self->option('show_help', '-h', '--help', 'Show this message');
     $options_spec{$option->for_get_options} = sub {
-        print "$self";
+        print $self->as_string . "\n";
         exit(0);
     };
 
@@ -227,6 +220,12 @@ sub summarize {
 
     return sprintf "  %-20s  %s", $self->names_and_aliases,
         ($self->description || '');
+}
+
+sub as_string {
+    my ($self) = @_;
+
+    return App::Commando::Presenter->new($self)->command_presentation;
 }
 
 1;
