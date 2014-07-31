@@ -194,6 +194,13 @@ sub execute {
     }
 }
 
+sub identity {
+    my ($self) = @_;
+
+    return $self->full_name .
+        (defined $self->version ? ' ' . $self->version : '');
+}
+
 sub full_name {
     my ($self) = @_;
 
