@@ -8,6 +8,7 @@ use Moo;
 
 use App::Commando::Logger;
 use App::Commando::Option;
+use App::Commando::Presenter;
 
 has 'actions' => ( is => 'rw' );
 
@@ -38,6 +39,13 @@ sub BUILDARGS {
         parent      => $parent,
     };
 }
+
+# Builds a stringified representation of the command
+use overload q("") => sub {
+    my ($self) = @_;
+
+    return App::Commando::Presenter->new($self)->command_presentation;
+};
 
 # Gets or sets the command version
 sub version {
@@ -164,9 +172,7 @@ sub add_default_options {
 
     $option = $self->option('show_help', '-h', '--help', 'Show this message');
     $options_spec{$option->for_get_options} = sub {
-        for my $option (@{$self->options}) {
-            print "$option\n";
-        }
+        print "$self";
         exit(0);
     };
 
