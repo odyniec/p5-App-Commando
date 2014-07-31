@@ -194,4 +194,13 @@ sub execute {
     }
 }
 
+sub full_name {
+    my ($self) = @_;
+
+    return
+        ($self->parent && $self->parent->full_name ?
+            $self->parent->full_name . ' ' : '') .
+        $self->name;
+}
+
 1;
