@@ -32,8 +32,8 @@ sub options_presentation {
 sub command_header {
     my ($self) = @_;
 
-    my $header = $self->command->identity . "\n";
-    $header .= ' -- ' . $self->command->description
+    my $header = $self->command->identity;
+    $header .= "\n -- " . $self->command->description
         if $self->command->description;
 
     return $header;
