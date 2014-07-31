@@ -218,4 +218,10 @@ sub full_name {
         $self->name;
 }
 
+sub names_and_aliases {
+    my ($self) = @_;
+
+    return join ', ', $self->name, @{$self->aliases};
+}
+
 1;

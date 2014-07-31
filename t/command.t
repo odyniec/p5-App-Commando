@@ -21,6 +21,7 @@ is $command->syntax, 'foo [options]', 'Syntax is correct after setting';
 is_deeply $command->aliases, [], 'Aliases are initially empty';
 $command->alias('bar');
 is_deeply $command->aliases, [ 'bar' ], 'Aliases are set correctly';
+is $command->names_and_aliases, 'foo, bar', 'names_and_aliases are correct';
 
 is $command->full_name, 'foo', 'Full name is correct';
 
