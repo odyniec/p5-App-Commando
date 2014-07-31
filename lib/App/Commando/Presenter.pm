@@ -4,6 +4,7 @@ use strict;
 use warnings;
 
 use Moo;
+use Scalar::Util qw(refaddr);
 
 has 'command' => ( is => 'rw' );
 
@@ -29,6 +30,18 @@ sub options_presentation {
     return join "\n", map { "$_" } @{$self->command->options};
 }
 
+sub subcommands_presentation {
+    my ($self) = @_;
+
+    return if !%{$self->command->commands};
+
+    return join "\n", map { $_->summarize }
+        # Remove duplicate commands
+        values %{{
+            map { refaddr($_) => $_ } values %{$self->command->commands}
+        }};
+}
+
 sub command_header {
     my ($self) = @_;
 
@@ -51,6 +64,10 @@ sub command_presentation {
 
     if (my $options = $self->options_presentation) {
         push @msg, "Options:\n" . $options;
+    }
+
+    if (my $subcommands = $self->subcommands_presentation) {
+        push @msg, "Subcommands:\n" . $subcommands;
     }
 
     return join "\n\n", @msg;
