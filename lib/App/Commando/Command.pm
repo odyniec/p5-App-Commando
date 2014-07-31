@@ -112,8 +112,7 @@ sub alias {
     my ($self, $cmd_name) = @_;
 
     push @{$self->aliases}, $cmd_name;
-    $self->parent->commands->{$cmd_name} = $self
-        if $self->parent;
+    $self->parent->commands->{$cmd_name} = $self if defined $self->parent;
 }
 
 sub action {
