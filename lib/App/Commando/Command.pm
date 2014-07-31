@@ -134,14 +134,13 @@ sub logger {
 sub go {
     my ($self, $argv, $config) = @_;
 
-    $self->process_options($config);
-
     if (defined $argv->[0] && exists $self->commands->{$argv->[0]}) {
         my $cmd = $self->commands->{$argv->[0]};
         shift @$argv;
         $cmd->go($argv, $config);
     }
     else {
+        $self->process_options($config);
         return $self;
     }
 }
