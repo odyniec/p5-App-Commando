@@ -118,7 +118,8 @@ sub logger {
     my ($self) = @_;
 
     unless ($self->{_logger}) {
-        $self->{_logger} = App::Commando::Logger->new;
+        $self->{_logger} = App::Commando::Logger->new(*STDOUT);
+        $self->{_logger}->level('info');
     }
 
     return $self->{_logger};
