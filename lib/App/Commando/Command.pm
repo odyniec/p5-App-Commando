@@ -130,6 +130,7 @@ sub go {
 
     if (defined $argv->[0] && exists $self->commands->{$argv->[0]}) {
         my $cmd = $self->commands->{$argv->[0]};
+        $self->logger->debug("Found subcommand " . $cmd->name);
         shift @$argv;
         $cmd->go($argv, $config);
     }
