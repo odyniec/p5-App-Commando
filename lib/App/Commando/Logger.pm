@@ -4,11 +4,46 @@ use strict;
 use warnings;
 
 use Moo;
+use Scalar::Util qw(openhandle);
+
+has 'device' => ( is => 'ro' );
+
+has 'level' => ( is => 'rw' );
+
+sub BUILDARGS {
+    my ($class, $device) = @_;
+
+    return {
+        device => $device,
+    };
+}
+
+sub BUILD {
+    my ($self) = @_;
+
+    if (!($self->{_fh} = openhandle($self->device)) &&
+        !open($self->{_fh}, '>>', $self->device))
+    {
+        # TODO: Error
+    }
+
+    return $self;
+}
+
+my %levels = (
+    'debug' => 1,
+    'info'  => 2,
+    'warn'  => 3,
+    'error' => 4,
+    'fatal' => 5,
+);
 
 sub _store {
     my ($self, $level, $message) = @_;
 
-    print STDERR $message;
+    if ($levels{lc $level} >= $levels{lc $self->{level}}) {
+        print { $self->{_fh} } $message;
+    }
 }
 
 sub debug {
