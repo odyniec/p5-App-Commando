@@ -106,6 +106,7 @@ sub command {
 sub alias {
     my ($self, $cmd_name) = @_;
 
+    $self->logger->debug("adding alias to parent for self: $cmd_name");
     push @{$self->aliases}, $cmd_name;
     $self->parent->commands->{$cmd_name} = $self if defined $self->parent;
 }
@@ -143,6 +144,7 @@ sub go {
         $cmd->go($argv, $config);
     }
     else {
+        $self->logger->debug('No additional command found, time to exec');
         $self->process_options($config);
         return $self;
     }
