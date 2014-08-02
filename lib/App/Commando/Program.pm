@@ -22,6 +22,10 @@ around BUILDARGS => sub {
 around go => sub {
     my ($orig, $self, $argv) = @_;
 
+    if (!defined $argv) {
+        $argv = \@ARGV;
+    }
+
     my $cmd = $self->$orig($argv, $self->config);
 
     # Run through all options again in case there are any unknown ones
