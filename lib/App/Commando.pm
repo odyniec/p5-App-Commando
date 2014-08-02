@@ -49,3 +49,9 @@ __END__
     });
 
     $program->go;
+
+=head1 SEE ALSO
+
+=for :list
+
+* L<https://github.com/jekyll/mercenary> - Mercenary GitHub repository
