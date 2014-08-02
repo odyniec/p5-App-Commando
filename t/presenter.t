@@ -30,6 +30,17 @@ Options:
         -2, --two          Second option',
 'command_presentation has the expected content');
 
+is(App::Commando::Presenter->new($command)->command_presentation,
+'foo
+
+Usage:
+
+  foo
+
+Subcommands:
+  bar, baz              Do that thing',
+'command_presentation of top-level command has the expected content');
+
 is(App::Commando::Presenter->new($command)->subcommands_presentation,
     '  bar, baz              Do that thing',
     'subcommands_presentation has the expected content');
