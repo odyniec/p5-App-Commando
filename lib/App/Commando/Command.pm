@@ -122,6 +122,12 @@ sub logger {
     unless ($self->{_logger}) {
         $self->{_logger} = App::Commando::Logger->new(*STDOUT);
         $self->{_logger}->level('info');
+        $self->{_logger}->formatter(sub {
+            my ($level, $message) = @_;
+
+            return $self->identity . ' | ' .
+                sprintf("%-7s", ucfirst lc $level) . ": $message\n";
+        });
     }
 
     return $self->{_logger};
