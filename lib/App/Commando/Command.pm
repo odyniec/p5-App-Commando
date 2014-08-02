@@ -3,6 +3,7 @@ package App::Commando::Command;
 use strict;
 use warnings;
 
+use Carp;
 use Getopt::Long;
 use Moo;
 
@@ -74,7 +75,8 @@ sub default_command {
             return $self->{_default_command} = $self->commands->{$command_name};
         }
         else {
-            # TODO: Error
+            croak "$command_name couldn't be found in this command's list of " .
+                "commands.";
         }
     }
     else {
