@@ -18,6 +18,15 @@ $subcommand->alias('baz');
 my $presenter = App::Commando::Presenter->new($subcommand);
 isa_ok $presenter, 'App::Commando::Presenter', '$presenter';
 
+is($presenter->options_presentation,
+'        -1, --one          First option
+        -2, --two          Second option',
+'options_presentation has the expected content');
+
+is(App::Commando::Presenter->new($command)->subcommands_presentation,
+    '  bar, baz              Do that thing',
+    'subcommands_presentation has the expected content');
+
 is($presenter->command_presentation,
 'foo bar 0.4.2 -- Do that thing
 
@@ -40,14 +49,5 @@ Usage:
 Subcommands:
   bar, baz              Do that thing',
 'command_presentation of top-level command has the expected content');
-
-is($presenter->options_presentation,
-'        -1, --one          First option
-        -2, --two          Second option',
-'options_presentation has the expected content');
-
-is(App::Commando::Presenter->new($command)->subcommands_presentation,
-    '  bar, baz              Do that thing',
-    'subcommands_presentation has the expected content');
 
 done_testing;
