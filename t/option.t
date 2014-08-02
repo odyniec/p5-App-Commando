@@ -40,7 +40,7 @@ subtest 'Short switch only' => sub {
         'formatted_switches are correct';
 };
 
-is "$option", '        -f, --foo          Foo',
-    'Stringification works as expected';
+is $option->as_string, '        -f, --foo          Foo',
+    'as_string returns the expected string';
 
 done_testing;
