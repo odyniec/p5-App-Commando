@@ -19,8 +19,7 @@ my $presenter = App::Commando::Presenter->new($subcommand);
 isa_ok $presenter, 'App::Commando::Presenter', '$presenter';
 
 is($presenter->command_presentation,
-'foo bar 0.4.2
- -- Do that thing
+'foo bar 0.4.2 -- Do that thing
 
 Usage:
 
