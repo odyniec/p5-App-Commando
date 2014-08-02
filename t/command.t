@@ -33,9 +33,14 @@ is $command->summarize, '  foo, bar              Does foo',
     'Summary is correct';
 
 my $subcommand = App::Commando::Command->new('baz', $command);
+$command->commands->{$subcommand->name} = $subcommand;
 
 is $subcommand->full_name, 'foo baz', 'Full name of a subcommand is correct';
 
 is $subcommand->identity, 'foo baz', 'Identity of a subcommand is correct';
+
+is $command->default_command, undef, 'default_command is undefined as expected';
+is $command->default_command($subcommand->name), $subcommand,
+    'default_command returns the expected Command object';
 
 done_testing;
