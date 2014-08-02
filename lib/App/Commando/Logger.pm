@@ -8,6 +8,8 @@ use Scalar::Util qw(openhandle);
 
 has 'device' => ( is => 'ro' );
 
+has 'formatter' => ( is => 'rw' );
+
 has 'level' => ( is => 'rw' );
 
 sub BUILDARGS {
@@ -42,7 +44,9 @@ sub _store {
     my ($self, $level, $message) = @_;
 
     if ($levels{lc $level} >= $levels{lc $self->{level}}) {
-        print { $self->{_fh} } $message;
+        print { $self->{_fh} }
+            ref($self->formatter) eq 'CODE' ?
+                $self->formatter->($level, $message) : $message;
     }
 }
 
