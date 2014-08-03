@@ -50,6 +50,11 @@ __END__
 
     $program->go;
 
+=head1 DESCRIPTION
+
+App::Commando is a lightweight library for building command-line applications,
+based on Ruby's Mercenary.
+
 =head1 SEE ALSO
 
 =for :list
