@@ -3,6 +3,7 @@ package App::Commando::Program;
 use strict;
 use warnings;
 
+use Carp;
 use Getopt::Long qw( GetOptionsFromArray );
 use Moo;
 
@@ -30,8 +31,14 @@ around go => sub {
 
     # Run through all options again in case there are any unknown ones
     Getopt::Long::Configure('no_pass_through');
-    GetOptionsFromArray($argv,
-        { map { $_->for_get_options => undef } @{$self->options} });
+    {
+        # Treat Getopt::Long warnings as fatal errors
+        local $SIG{__WARN__} = sub {
+            croak @_;
+        };
+        GetOptionsFromArray($argv,
+            { map { $_->for_get_options => undef } @{$self->options} });
+    }
 
     $cmd->execute($argv, $self->config);
 };
