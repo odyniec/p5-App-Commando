@@ -3,6 +3,7 @@ package App::Commando::Logger;
 use strict;
 use warnings;
 
+use Carp;
 use Moo;
 use Scalar::Util qw(openhandle);
 
@@ -23,10 +24,12 @@ sub BUILDARGS {
 sub BUILD {
     my ($self) = @_;
 
-    if (!($self->{_fh} = openhandle($self->device)) &&
-        !open($self->{_fh}, '>>', $self->device))
-    {
-        # TODO: Error
+    eval {
+        $self->{_fh} = openhandle($self->device);
+        open($self->{_fh}, '>>', $self->device) if !defined $self->{_fh};
+    };
+    if ($@) {
+        croak 'Can\'t open log device';
     }
 
     return $self;
