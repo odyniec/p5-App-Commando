@@ -7,11 +7,9 @@ use Carp;
 use Moo;
 use Scalar::Util qw(openhandle);
 
-has 'device' => ( is => 'ro' );
-
+has 'device'    => ( is => 'ro' );
 has 'formatter' => ( is => 'rw' );
-
-has 'level' => ( is => 'rw' );
+has 'level'     => ( is => 'rw' );
 
 sub BUILDARGS {
     my ($class, $device) = @_;

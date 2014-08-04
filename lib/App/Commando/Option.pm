@@ -5,15 +5,11 @@ use warnings;
 
 use Moo;
 
-has 'config_key' => ( is => 'ro' );
-
-has 'description' => ( is => 'ro' );
-
-has 'long' => ( is => 'ro' );
-
-has 'short' => ( is => 'ro' );
-
-has 'spec' => ( is => 'ro' );
+has 'config_key'    => ( is => 'ro' );
+has 'description'   => ( is => 'ro' );
+has 'long'          => ( is => 'ro' );
+has 'short'         => ( is => 'ro' );
+has 'spec'          => ( is => 'ro' );
 
 sub BUILDARGS {
     my ($class, $config_key, @info) = @_;

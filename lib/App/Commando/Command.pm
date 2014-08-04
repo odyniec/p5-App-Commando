@@ -11,21 +11,14 @@ use App::Commando::Logger;
 use App::Commando::Option;
 use App::Commando::Presenter;
 
-has 'actions' => ( is => 'rw' );
-
-has 'aliases' => ( is => 'ro' );
-
-has 'commands' => ( is => 'rw' );
-
-has 'description' => ( is => 'rw' );
-
-has 'map' => ( is => 'ro' );
-
-has 'name' => ( is => 'ro' );
-
-has 'options' => ( is => 'rw' );
-
-has 'parent' => ( is => 'rw' );
+has 'actions'       => ( is => 'rw' );
+has 'aliases'       => ( is => 'ro' );
+has 'commands'      => ( is => 'rw' );
+has 'description'   => ( is => 'rw' );
+has 'map'           => ( is => 'ro' );
+has 'name'          => ( is => 'ro' );
+has 'options'       => ( is => 'rw' );
+has 'parent'        => ( is => 'rw' );
 
 sub BUILDARGS {
     my ($class, $name, $parent) = @_;
