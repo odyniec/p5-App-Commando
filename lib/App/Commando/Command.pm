@@ -95,20 +95,20 @@ sub option {
 }
 
 sub command {
-    my ($self, $cmd_name) = @_;
+    my ($self, $command_name) = @_;
 
-    my $cmd = App::Commando::Command->new($cmd_name, $self);
-    $self->commands->{$cmd_name} = $cmd;
+    my $cmd = App::Commando::Command->new($command_name, $self);
+    $self->commands->{$command_name} = $cmd;
 
     return $cmd;
 }
 
 sub alias {
-    my ($self, $cmd_name) = @_;
+    my ($self, $command_name) = @_;
 
-    $self->logger->debug("adding alias to parent for self: $cmd_name");
-    push @{$self->aliases}, $cmd_name;
-    $self->parent->commands->{$cmd_name} = $self if defined $self->parent;
+    $self->logger->debug("adding alias to parent for self: $command_name");
+    push @{$self->aliases}, $command_name;
+    $self->parent->commands->{$command_name} = $self if defined $self->parent;
 }
 
 sub action {
