@@ -285,6 +285,22 @@ Example:
         }
     });
 
+=head3 C<command($command_name)>
+
+Adds a new subcommand to this command. Arguments:
+
+=over
+
+=item C<$command_name>
+
+The name of the new subcommand.
+
+=back
+
+Example:
+
+    my $sub_cmd = $cmd->command('bar');
+
 =head1 SEE ALSO
 
 =for :list
