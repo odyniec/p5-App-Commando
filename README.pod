@@ -8,7 +8,7 @@ App::Commando - Flexible library to build command-line apps
 
 =head1 VERSION
 
-version 0.011
+version 0.012
 
 =head1 SYNOPSIS
 
@@ -207,7 +207,8 @@ be the long switch for the option.
 
 If the argument is formatted like a Getopt::Long option specification (e.g.,
 C<'=s'>), it is passed as the specification to Getopt::Long when command-line
-arguments are parsed.
+arguments are parsed. See L<Getopt::Long/"Summary of Option Specifications"> for
+more information.
 
 =item *
 
@@ -274,9 +275,33 @@ Example:
         }
     });
 
+=head3 C<command($command_name)>
+
+Adds a new subcommand to this command. Arguments:
+
+=over
+
+=item C<$command_name>
+
+The name of the new subcommand.
+
+=back
+
+Example:
+
+    my $sub_cmd = $cmd->command('bar');
+
+=head1 ACKNOWLEDGEMENTS
+
+The design of this library is based on Mercenary, written by Parker Moore.
+
 =head1 SEE ALSO
 
 =over 4
+
+=item *
+
+L<Getopt::Long>
 
 =item *
 
