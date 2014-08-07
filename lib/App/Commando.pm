@@ -218,7 +218,8 @@ be the long switch for the option.
 
 If the argument is formatted like a Getopt::Long option specification (e.g.,
 C<'=s'>), it is passed as the specification to Getopt::Long when command-line
-arguments are parsed.
+arguments are parsed. See L<Getopt::Long/"Summary of Option Specifications"> for
+more information.
 
 =item *
 
@@ -301,7 +302,12 @@ Example:
 
     my $sub_cmd = $cmd->command('bar');
 
+=head1 ACKNOWLEDGEMENTS
+
+The design of this library is based on Mercenary, written by Parker Moore.
+
 =head1 SEE ALSO
 
 =for :list
+* L<Getopt::Long>
 * L<https://github.com/jekyll/mercenary> - Mercenary GitHub repository
