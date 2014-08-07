@@ -16,10 +16,35 @@ my %tests = (
         expected_argv   => [],
         expected_config => { 'foo' => '1' },
     },
+    'One long switch' => {
+        ARGV            => [ '--bar' ],
+        expected_argv   => [],
+        expected_config => { 'bar' => '1' },
+    },
+    'Two long switches' => {
+        ARGV            => [ '--foo', '--bar' ],
+        expected_argv   => [],
+        expected_config => { 'foo' => '1', 'bar' => '1' },
+    },
     'One argument' => {
         ARGV            => [ 'xyzzy' ],
         expected_argv   => [ 'xyzzy' ],
         expected_config => {},
+    },
+    'One argument and one short switch' => {
+        ARGV            => [ '-f', 'xyzzy' ],
+        expected_argv   => [ 'xyzzy' ],
+        expected_config => { 'foo' => '1' },
+    },
+    'Two arguments' => {
+        ARGV            => [ 'xyzzy', 'zzyxy' ],
+        expected_argv   => [ 'xyzzy', 'zzyxy' ],
+        expected_config => {},
+    },
+    'Two arguments and one long switch' => {
+        ARGV            => [ '--bar', 'xyzzy', 'zzyxy' ],
+        expected_argv   => [ 'xyzzy', 'zzyxy' ],
+        expected_config => { 'bar' => '1' },
     },
 );
 
