@@ -22,12 +22,11 @@ sub BUILDARGS {
 sub BUILD {
     my ($self) = @_;
 
-    eval {
-        $self->{_fh} = openhandle($self->device);
-        open($self->{_fh}, '>>', $self->device) if !defined $self->{_fh};
-    };
-    if ($@) {
-        croak 'Can\'t open log device';
+    $self->{_fh} = openhandle($self->device);
+
+    if (!defined $self->{_fh}) {
+        $self->device and open($self->{_fh}, '>>', $self->device)
+            or croak 'Can\'t open log device';
     }
 
     return $self;
